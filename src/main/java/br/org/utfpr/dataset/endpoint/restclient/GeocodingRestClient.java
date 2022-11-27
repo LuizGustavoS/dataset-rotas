@@ -1,5 +1,7 @@
 package br.org.utfpr.dataset.endpoint.restclient;
 
+import br.org.utfpr.dataset.endpoint.provider.ObjectMapperProvider;
+import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import org.json.JSONObject;
 
@@ -11,11 +13,14 @@ import javax.ws.rs.core.MediaType;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-//@RegisterProvider(DataCubeExceptionHandle.class)
+@RegisterProvider(ObjectMapperProvider.class)
 @RegisterRestClient(baseUri = "https://maps.googleapis.com/maps/api/geocode/json")
 public interface GeocodingRestClient {
 
     @GET
-    JSONObject consultarGeocoding(@QueryParam("key") String key, @QueryParam("components") String components);
+    JSONObject consultarAddress(@QueryParam("key") String key, @QueryParam("address") String address);
+
+    @GET
+    JSONObject consultarComponents(@QueryParam("key") String key, @QueryParam("components") String components);
 
 }
