@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DatasetDTO {
+public class BairroDTO {
 
-    private String dsBairro;
+    private String bairro;
 
-    private String dsLatitude;
+    private double latitude;
 
-    private String dsLongitude;
+    private double longitude;
 
 }
