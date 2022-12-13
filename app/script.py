@@ -1,7 +1,9 @@
-from definitions.geneticAlgorithm import PopulationGenerator, NaturalSelection
-from definitions.presentation import Graphics
+# coding=utf-8
+
 import json
 
+from definitions.geneticAlgorithm import PopulationGenerator, NaturalSelection
+from definitions.presentation import Graphics
 
 # Configurações
 population_size = 100
@@ -40,7 +42,8 @@ old_cost = model.getFitness()[model.getFittest()]
 
 # Mostra a rota e custo inicial
 old_fittest = model.population[model.getFittest()]
-print(f'\nO melhor indivíduo da geração inicial faz a rota: {graphics.describeRoute(old_fittest)}\nSeu custo é: {old_cost}\nRota em lista: {old_fittest}')
+print('\nO melhor indivíduo da geração inicial faz a rota: {graphics.describeRoute(old_fittest)}\nSeu custo é: {'
+      'old_cost}\nRota em lista: {old_fittest}')
 
 # Executa a evolução
 the_fittest = model.geneticAlgorithm(generations, arena_size, mutation_rate, True)
@@ -52,7 +55,8 @@ graphics.generateGraph()
 final_cost = model.getFitness()[model.getFittest()]
 
 # Mostra a rota e custo final
-print(f'\nO melhor indivíduo da geração final faz a rota: {graphics.describeRoute(the_fittest)}\nSeu custo é: {final_cost}\nRota em lista: {the_fittest}')
-input('\nAperte enter para visualizar o gráfico final')
+print('\nO melhor indivíduo da geração final faz a rota: {graphics.describeRoute(the_fittest)}\nSeu custo é: {'
+      'final_cost}\nRota em lista: {the_fittest}')
+# input('\nAperte enter para visualizar o gráfico final')
 
 graphics.display()

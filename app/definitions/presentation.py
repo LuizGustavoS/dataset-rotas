@@ -1,5 +1,7 @@
-import matplotlib.pyplot as plt
 from random import random
+
+import matplotlib.pyplot as plt
+
 
 class Graphics:
     """
@@ -117,9 +119,9 @@ class Graphics:
         # Imprime o nome das cidades
         for city in self.name:
             x, y = self.coordinates[city]
-            # Desloca um pouco para cima
-            y -= self.height/5
-            self.map.text(x, y, self.name[city][0])
+            print(y)
+            y += 0.004
+            self.map.text(x, y, self.name[city][0], fontsize=5, rotation='vertical')
         
         # figure = self.fig
         plt.show()
