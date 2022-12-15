@@ -119,7 +119,6 @@ class Graphics:
         # Imprime o nome das cidades
         for city in self.name:
             x, y = self.coordinates[city]
-            print(y)
             y += 0.004
             self.map.text(x, y, self.name[city][0], fontsize=5, rotation='vertical')
         

@@ -22,41 +22,44 @@ with open("data/coordinates.json", "r") as read_file:
 with open("data/names.json", "r") as read_file:
     name = json.load(read_file)
 
-print('Bem vindo ao problema do caixeiro viajante com algoritmo genético!')
+for i in range(4):
 
-# Pega lista de cidades
-city_list = list(coordinates.keys())
+    # Pega lista de cidades
+    city_list = list(coordinates.keys())
 
-# População inicial
-initial_population = PopulationGenerator(population_size, city_list).generatePopulation()
+    # População inicial
+    initial_population = PopulationGenerator(population_size, city_list).generatePopulation()
 
-# Inicia os modelos de lógica e apresentação
-model = NaturalSelection(distance, initial_population)
-graphics = Graphics(routes_to_plot, generations, coordinates, name, graphics_width, graphics_height)
+    # Inicia os modelos de lógica e apresentação
+    model = NaturalSelection(distance, initial_population)
+    graphics = Graphics(routes_to_plot, generations, coordinates, name, graphics_width, graphics_height)
 
-# Liga o modelo de apresentação ao lógico, para que ele receba os relatório de progresso
-model.subscribe(graphics.receiveData)
+    # Liga o modelo de apresentação ao lógico, para que ele receba os relatório de progresso
+    model.subscribe(graphics.receiveData)
 
-# Salva o custo antigo
-old_cost = model.getFitness()[model.getFittest()]
+    # Salva o custo antigo
+    old_cost = model.getFitness()[model.getFittest()]
 
-# Mostra a rota e custo inicial
-old_fittest = model.population[model.getFittest()]
-print('\nO melhor indivíduo da geração inicial faz a rota: {graphics.describeRoute(old_fittest)}\nSeu custo é: {'
-      'old_cost}\nRota em lista: {old_fittest}')
+    # Mostra a rota e custo inicial
+    old_fittest = model.population[model.getFittest()]
+    print('\nO melhor indivíduo da geração inicial faz a rota: ', graphics.describeRoute(old_fittest),
+          '\nSeu custo é: ', old_cost,
+          '\nRota em lista: ', old_fittest)
 
-# Executa a evolução
-the_fittest = model.geneticAlgorithm(generations, arena_size, mutation_rate, True)
+    # Executa a evolução
+    the_fittest = model.geneticAlgorithm(generations, arena_size, mutation_rate, True)
 
-# Gera o gráfico
-graphics.generateGraph()
+    # Gera o gráfico
+    graphics.generateGraph()
 
-# Pega o custo final do modelo
-final_cost = model.getFitness()[model.getFittest()]
+    # Pega o custo final do modelo
+    final_cost = model.getFitness()[model.getFittest()]
 
-# Mostra a rota e custo final
-print('\nO melhor indivíduo da geração final faz a rota: {graphics.describeRoute(the_fittest)}\nSeu custo é: {'
-      'final_cost}\nRota em lista: {the_fittest}')
-# input('\nAperte enter para visualizar o gráfico final')
+    # Mostra a rota e custo final
+    print('\nO melhor indivíduo da geração final faz a rota: ', graphics.describeRoute(the_fittest),
+          '\nSeu custo é: ', final_cost,
+          '\nRota em lista: ', the_fittest)
 
-graphics.display()
+    print('\n---------------------------------------------------------------------------------------')
+
+    graphics.display()
